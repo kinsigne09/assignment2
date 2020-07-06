@@ -1,26 +1,26 @@
 const express = require("express");
 const fakeDB = require("../model/fakeDb");
 
-const app = express.Router();
+const router = express.Router();
 
 
-app.use(express.static(__dirname + '/public'));
+router.use(express.static(__dirname + '/public'));
 
-app.get("/",(req,res)=>{
+router.get("/",(req,res)=>{
 
     res.render("home", {
         title : "Home Page"
     });
 });
 
-app.get("/package",(req,res)=>{
+router.get("/package",(req,res)=>{
 
     res.render("package", {
         title:"Package Meals"
     });
 });
 
-app.get("/login",(req,res)=>{
+router.get("/login",(req,res)=>{
 
     res.render("login",{
         title:"Login",
@@ -28,36 +28,56 @@ app.get("/login",(req,res)=>{
     });
 });
 
-app.post("/sign-in", (res,req)=> {
+router.post("/sign-in", (res,req)=> {
     const {email,password} = req.body;
+
 });
 
-app.get("/registration",(req,res)=>{
+router.get("/registration",(req,res)=>{
 
     res.render("registration", {
         title:"Resgistration"
     });
 });
 
-app.post("/register-form",(req,res)=>{
+router.post("/register-form",(req,res)=>{
 
     const {firstname,lastname,email,password} = req.body;
-    error = [];
+    let error = 0;
 
     if (!firstname || !lastname || !email || !password) {
-        error.push[{msg: "Please fill in the blanks."}];
+        error+=1;
     }
-    if (password < 6) {
-        error.push[{message: "Password should atleast be 6 characters long."}];
+    if (password.length < 6) {
+        error+=2;
     }
-    if (error.legnth > 0) {
+    if (error == 1) {
         res.render("registration", {
-            error: error,
+            error: "Fill in the blanks.",
             holdfirstname: firstname,
-            holdlastname: lastname
+            holdlastname: lastname,
+            holdemail: email
         });
-    } else {
-        console.log("successful")
+    } else if (error == 2) {
+        res.render("registration", {
+            error: "Invalid password, must be greater than 6 characters.",
+            holdfirstname: firstname,
+            holdlastname: lastname,
+            holdemail: email
+        });
+    } else if (error == 3) {
+        res.render("registration", {
+            error: "Fill in the blanks. Invalid password, must be greater than 6 characters.",
+            holdfirstname: firstname,
+            holdlastname: lastname,
+            holdemail: email
+        });
+    }else {
+        console.log("successful");
+        res.render("dashboard", {
+            firstname: firstname,
+            lastname: lastname
+        })
     }
 
     const sgMail = require('@sendgrid/mail');
@@ -77,4 +97,4 @@ app.post("/register-form",(req,res)=>{
 
 });
 
-module.exports = app;
+module.exports = router;
