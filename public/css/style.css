@@ -1,3 +1,4 @@
+
 * {
   margin: 0;
   padding: 0;
@@ -31,7 +32,7 @@ h1 {
   text-align: center;
 }
 #banner {
-  height: 500px;
+  height: 450px;
   width:100%;
 }
 #banner2 {
@@ -45,13 +46,27 @@ h1 {
   margin-right: 100px;
   height: 350px;
 }
+.container2 {
+  display: grid;
+  padding:10px 10px 10px 10px;
+  margin-left: 100px;
+  margin-right: 100px;
+  height: 400px;
+}
 
 .layout {
   display: grid;
   grid-template-columns: repeat(4,1fr);
   grid-gap: 50px;
 }
+
 .box {
+  height: 200px;
+  padding: 10px 10px 10px 10px;
+  text-align: center;
+  font-size: 120%;
+}
+.box2 {
   height: 200px;
   padding: 10px 10px 10px 10px;
   text-align: center;
@@ -127,4 +142,170 @@ h1 {
 footer {
   margin-top: 150px;
   background-color:rgba(255, 72, 0, 0.747);
+}
+
+/* Tablet View */
+@media only screen and (max-width:800px) {
+  nav {
+    text-align: center;
+    background-color:rgba(255, 72, 0, 0.747);
+    height: 150px;
+  }
+
+  nav li, nav li a {
+    display:block;
+    padding: 3px;
+      float: left;
+      color: black;
+      text-align: center;
+      text-decoration: none;
+      font-size: 30px;
+      font-weight: bold;
+      list-style-type: none;
+  }
+  nav li a:hover {
+    text-decoration: underline;
+  }
+  .container {
+    display: grid;
+    padding:10px 10px 10px 10px;
+    margin-left: 100px;
+    margin-right: 100px;
+    height: 550px;
+  }
+  .container2 {
+    display: grid;
+    padding:10px 10px 10px 10px;
+    margin-left: 100px;
+    margin-right: 100px;
+    height: 650px;
+  }
+  .layout {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap: 50px;
+  }
+  .box {
+    height: 200px;
+    padding: 10px 10px 10px 10px;
+    text-align: center;
+    font-size: 120%;
+  }
+  .box2 {
+    height: 200px;
+    padding: 10px 10px 10px 10px;
+    text-align: center;
+    font-size: 120%;
+  }
+  .box p {
+    padding: 5px 5px 5px 5px;
+  }
+  .button {
+    background-color:rgba(255, 72, 0, 0.747);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+  footer {
+    margin-top: 200px;
+    background-color:rgba(255, 72, 0, 0.747);
+  }
+}
+@media only screen and (max-width:400px) {
+  nav {
+    text-align: center;
+    background-color:rgba(255, 72, 0, 0.747);
+    height: 150px;
+  }
+
+  nav li, nav li a {
+    display:block;
+    padding: 3px;
+      float: left;
+      color: black;
+      text-align: center;
+      text-decoration: none;
+      font-size: 30px;
+      font-weight: bold;
+      list-style-type: none;
+  }
+  nav li a:hover {
+    text-decoration: underline;
+  }
+  #banner {
+    height: 300px;
+    width:100%;
+  }
+  #banner2 {
+    height:300px;
+    margin-top: 50px;
+  }
+  .container {
+    display: grid;
+    padding:10px 10px 10px 10px;
+    margin-left: 100px;
+    margin-right: 100px;
+    height: 1150px;
+  }
+  .container2 {
+    display: grid;
+    padding:10px 10px 10px 10px;
+
+    height: 1550px;
+  }
+  .layout {
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    grid-gap: 50px;
+  }
+  .box {
+    height: 200px;
+    padding: 10px 10px 10px 10px;
+    padding-bottom: 45px;
+    text-align: center;
+    font-size: 100%;
+  }
+  .box2 {
+    height: 200px;
+    width: 200px;
+    text-align: center;
+    font-size: 100%;
+    padding-bottom: 150px;
+  }
+  .box p {
+    padding: 5px 5px 5px 5px;
+  }
+  .button {
+    background-color:rgba(255, 72, 0, 0.747);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+  .footer-container {
+    display: grid;
+    padding:10px 10px 10px 10px;
+
+    height: 250px;
+  }
+  .footer-layout {
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    grid-gap: 10px;
+  }
+  .footer-box {
+    height: 75px;
+    padding: 10px 10px 10px 10px;
+    text-align: center;
+    font-size: 120%;
+  }
+  footer {
+    margin-top: 200px;
+    background-color:rgba(255, 72, 0, 0.747);
+  }
 }

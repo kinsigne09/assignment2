@@ -1,43 +1,28 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
-const fakeDB = require("./model/fakeDB");
+const bodyParser = require('body-parser');
+//load the environment variable file
+require('dotenv').config({path:"./config/keys.env"});
 
 const app = express();
 
-app.engine('handlebars',exphbs());
+//Handlebars middleware (This tells Express to set handlebars as the template engine)
+app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 
-app.use(express.static(__dirname + '/public'));
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get("/",(req,res)=>{
+app.use(express.static('public'));
 
-    res.render("home", {
-        title : "Home Page"
-    });
-});
+//load controllers
+const generalController = require("./controllers/general");
 
-app.get("/login",(req,res)=>{
+//map each controller to the app object
+app.use("/",generalController);
 
-    res.render("login",{
-        title:"Login"
-    });
-});
-
-app.get("/package",(req,res)=>{
-
-    res.render("package", {
-        title:"Package Meals"
-    });
-});
-
-app.get("/registration",(req,res)=>{
-
-    res.render("registration", {
-        title:"Resgistration"
-    });
-});
-
-const PORT=3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT,()=>{
-    console.log("Web Server is up and running");
+
+    console.log(`Web Server is up and running`);    
 });
