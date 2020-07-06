@@ -3,9 +3,6 @@ const fakeDB = require("../model/fakeDb");
 
 const router = express.Router();
 
-
-router.use(express.static(__dirname + '/public'));
-
 router.get("/",(req,res)=>{
 
     res.render("home", {
@@ -74,25 +71,27 @@ router.post("/register-form",(req,res)=>{
         });
     }else {
         console.log("successful");
-        res.render("dashboard", {
-            firstname: firstname,
-            lastname: lastname
+
+        const sgMail = require('@sendgrid/mail');
+        sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+        const msg = {
+          to: 'test@example.com',
+          from: 'test@example.com',
+          subject: 'Sending with Twilio SendGrid is Fun',
+          text: 'and easy to do anywhere, even with Node.js',
+          html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+        };
+        sgMail.send(msg).then(()=>{
+            res.render("dashboard", {
+                firstname: firstname,
+                lastname: lastname
+            })
         })
+        .catch(err=>{
+            console.log(`Error ${err}`);
+        });;
     }
 
-    const sgMail = require('@sendgrid/mail');
-    sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
-
-    const msg = {
-    to: `timezome1969@gmail.com`,
-    from: `test@test.ca`,
-    subject: 'Registration Form Submit',
-    html: 
-    `Vistor's Full Name ${firstname} ${lastname} <br>
-     Vistor's Email Address ${email} <br>
-     Vistor's message : Welcome to my website.<br>
-    `,
-    };
 
 
 });
